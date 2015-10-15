@@ -23,34 +23,36 @@
 			$response 	= file_get_contents($url, TRUE);
 			$headers 	= $http_response_header[0];
 
-			if ($http_response_header[0] === 'HTTP/1.1 200 OK')
+			if ($http_response_header[0] !== 'HTTP/1.1 200 OK')
 			{				
-				# check version < 3.0rc
-				preg_match('/h1(.*)</', $response, $m);
-				if (substr($m[1], 0, 11) === '>Code Ignit' || substr($m[1], 0, 11) === '>CodeIgnite')
-				{
-					# version found in user_guide
-					$version	= trim(strip_tags(str_replace(array('>Code Igniter User Guide Version', '>CodeIgniter User Guide Version'), '', $m[1])));
-					$return 	= $version;
-					if($version == '1.0'){ $return = '1.0b'; }
-					if($version == 'Beta 1.1'){ $return = '1.1b'; }
-				}
-				
-				# check version == 3.0rc
-				preg_match('/Jan 26, 2015/', $response, $m);
-				if (count($m)>0) { $return 	= '3.0rc'; }
-				
-				# check version == 3.0rc2
-				preg_match('/Feb 03, 2015/', $response, $m);
-				if (count($m)>0) { $return 	= '3.0rc2'; }
-				
-				# check version == 3.0rc3
-				preg_match('/Mar 10, 2015/', $response, $m);
-				if (count($m)>0) { $return 	= '3.0rc3'; }
-				
-				$return = array($return);
-				$this->versions_left = $return;
+				return $return;
 			}
+			
+			# check version < 3.0rc
+			preg_match('/h1(.*)</', $response, $m);
+			if (substr($m[1], 0, 11) === '>Code Ignit' || substr($m[1], 0, 11) === '>CodeIgnite')
+			{
+				# version found in user_guide
+				$version	= trim(strip_tags(str_replace(array('>Code Igniter User Guide Version', '>CodeIgniter User Guide Version'), '', $m[1])));
+				$return 	= $version;
+				if($version == '1.0'){ $return = '1.0b'; }
+				if($version == 'Beta 1.1'){ $return = '1.1b'; }
+			}
+			
+			# check version == 3.0rc
+			preg_match('/Jan 26, 2015/', $response, $m);
+			if (count($m)>0) { $return 	= '3.0rc'; }
+			
+			# check version == 3.0rc2
+			preg_match('/Feb 03, 2015/', $response, $m);
+			if (count($m)>0) { $return 	= '3.0rc2'; }
+			
+			# check version == 3.0rc3
+			preg_match('/Mar 10, 2015/', $response, $m);
+			if (count($m)>0) { $return 	= '3.0rc3'; }
+			
+			$return = array($return);
+			$this->versions_left = $return;
 			
 			return $return;
 		}
@@ -149,23 +151,27 @@
 			//$possibleV	= $this->versions_left;
 			$possibleV	= $this->all_versions;
 			
-				// match pMachine = 1.5.2 or lower, match EllisLab = 1.5.3 or higher
-				if ($http_response_header[0] === 'HTTP/1.1 200 OK')
-				{
-					preg_match('/EllisLab/', $response, $m);
-					if($m){
-						$ak 		= array_search('1.5.3', $possibleV);
-						$return		= array_splice($possibleV, $ak);
-						$this->versions_left = $return;
-					}else{
-						preg_match('/pMachine/', $response, $n);
-						if($n){
-							$ak 		= array_search('1.5.2', $possibleV);
-							$return		= array_splice($possibleV, 0, $ak+1);
-							$this->versions_left = $return;
-						}
-					}
-				}
+			// match pMachine = 1.5.2 or lower, match EllisLab = 1.5.3 or higher
+			if ($http_response_header[0] !== 'HTTP/1.1 200 OK')
+			{
+				return $return;	
+			}
+			
+			preg_match('/EllisLab/', $response, $m);
+			if($m){
+				$ak 		= array_search('1.5.3', $possibleV);
+				$return		= array_splice($possibleV, $ak);
+				$this->versions_left = $return;
+				return $return;	
+			}
+			
+			preg_match('/pMachine/', $response, $n);
+			if($n){
+				$ak 		= array_search('1.5.2', $possibleV);
+				$return		= array_splice($possibleV, 0, $ak+1);
+				$this->versions_left = $return;
+			}
+			
 			return $return;	
 		}
 		
@@ -260,6 +266,10 @@ function highlightkeyword($str, $search) {
 
 		
 		
+		
+// rebuild below to functions in class above
+/*
+		
 		$GO = false;
 		
 		if($GO){
@@ -269,7 +279,6 @@ function highlightkeyword($str, $search) {
 			
 
 			
-// rebuild below to functions in class above
 			
 			if($GO){
 				$GO = false;
@@ -333,3 +342,4 @@ function highlightkeyword($str, $search) {
 		echo '<hr>';
 		
 	}
+*/

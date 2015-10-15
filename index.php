@@ -20,7 +20,7 @@
 			# Check the user_guide folder
 			$return 	= FALSE;
 			$url		= $this->url . 'user_guide/';
-			$response 	= @file_get_contents($url, TRUE);
+			$response 	= file_get_contents($url, TRUE);
 			$headers 	= $http_response_header[0];
 
 			if ($http_response_header[0] === 'HTTP/1.1 200 OK')
@@ -60,7 +60,7 @@
 			// Check application folder
 			$return 	= FALSE;
 			$url		= $this->url . 'application/';
-			$response 	= @file_get_contents($url, TRUE);
+			$response 	= file_get_contents($url, TRUE);
 			$headers 	= $http_response_header[0];
 			//$possibleV	= $this->versions_left;
 			$possibleV	= $this->all_versions;
@@ -87,7 +87,7 @@
 			//$return 	= $this->versions_left;
 			$return		= 0;
 			$url		= $this->url . 'system/libraries/Calendar.php';
-			$response 	= @file_get_contents($url, TRUE);
+			$response 	= file_get_contents($url, TRUE);
 			$headers 	= $http_response_header[0];			
 			
 			if($http_response_header[0] === 'HTTP/1.1 404 Not Found'){
@@ -103,7 +103,7 @@
 			//$return 	= $this->versions_left;
 			$return 	= 0;
 			$url		= $this->url . 'system/application/controllers/index.html';
-			$response 	= @file_get_contents($url, TRUE);
+			$response 	= file_get_contents($url, TRUE);
 			$headers 	= $http_response_header[0];
 			//$possibleV	= $this->versions_left;
 			$possibleV	= $this->all_versions;
@@ -124,7 +124,7 @@
 			//$return 	= $this->versions_left;
 			$return 	= 0;
 			$url		= $this->url . 'system/application/models/index.html';
-			$response 	= @file_get_contents($url, TRUE);
+			$response 	= file_get_contents($url, TRUE);
 			$headers 	= $http_response_header[0];
 			//$possibleV	= $this->versions_left;
 			$possibleV	= $this->all_versions;
@@ -144,7 +144,7 @@
 			//$return 	= $this->versions_left;
 			$return 	= 0;
 			$url		= $this->url . 'license.txt';
-			$response 	= @file_get_contents($url, TRUE);
+			$response 	= file_get_contents($url, TRUE);
 			$headers 	= $http_response_header[0];
 			//$possibleV	= $this->versions_left;
 			$possibleV	= $this->all_versions;
@@ -174,7 +174,7 @@
 			//$return 	= $this->versions_left;
 			$return 	= 0;
 			$url		= $this->url . 'system/init/init_unit_test.php';
-			$response 	= @file_get_contents($url, TRUE);
+			$response 	= file_get_contents($url, TRUE);
 			$headers 	= $http_response_header[0];
 			//$possibleV	= $this->versions_left;
 			$possibleV	= $this->all_versions;
@@ -274,7 +274,7 @@ function highlightkeyword($str, $search) {
 			if($GO){
 				$GO = false;
 				// als system/init/init_unit_test.php bestaat is het versie 1.3.1 of hoger
-				$response6 = @file_get_contents($uri.'system/init/init_unit_test.php', true);
+				$response6 = file_get_contents($uri.'system/init/init_unit_test.php', true);
 				$response6header = $http_response_header[0];
 				
 				if($http_response_header[0] === 'HTTP/1.1 404 Not Found'){
@@ -288,7 +288,7 @@ function highlightkeyword($str, $search) {
 			if($GO){
 				$GO = false;
 				// als system/init/init_unit_test.php bestaat is het versie 1.3.1 of hoger
-				$response7 = @file_get_contents($uri.'system/init/init_unit_test.php', true);
+				$response7 = file_get_contents($uri.'system/init/init_unit_test.php', true);
 				$response7header = $http_response_header[0];
 				
 				if($http_response_header[0] === 'HTTP/1.1 404 Not Found'){
@@ -303,7 +303,7 @@ function highlightkeyword($str, $search) {
 			if($GO){
 				$GO = false;
 				// als system/application/scripts bestaat is het versie 1.3.1 of hoger
-				$response8 = @file_get_contents($uri.'system/application/scripts/', true);
+				$response8 = file_get_contents($uri.'system/application/scripts/', true);
 				$response8header = $http_response_header[0];
 				
 				if($http_response_header[0] === 'HTTP/1.1 200 OK'){
@@ -317,7 +317,7 @@ function highlightkeyword($str, $search) {
 			if($GO){
 				$GO = false;
 				// /system/application/config/smileys.php bestaat = 1.4.1 of hoger
-				$response8 = @file_get_contents($uri.'system/application/config/smileys.php', true);
+				$response8 = file_get_contents($uri.'system/application/config/smileys.php', true);
 				$response8header = $http_response_header[0];
 				
 				if($http_response_header[0] === 'HTTP/1.1 404 Not Found'){

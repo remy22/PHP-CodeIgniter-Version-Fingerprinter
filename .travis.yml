@@ -4,3 +4,8 @@ php:
 - 5.4
 - hhvm
 script: phpunit Test.php
+addons:
+    code_climate:
+        repo_token: 6cef356f8bc0802a667d2d49cb8498a3da90eedf9f24d61b7f6984fb60195f18
+after_script:
+  - vendor/bin/test-reporter

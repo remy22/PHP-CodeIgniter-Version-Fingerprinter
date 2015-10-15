@@ -328,7 +328,7 @@ function highlightkeyword($str, $search) {
 				}
 			}
 		
-			print_r($avv);
+			//print_r($avv);
 		}
 		echo '<hr>';
 		

@@ -9,3 +9,5 @@ addons:
 
 after_script:
     - vendor/bin/test-reporter
+    
+script: phpunit -h

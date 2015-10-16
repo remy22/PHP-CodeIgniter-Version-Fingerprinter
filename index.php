@@ -4,27 +4,42 @@ class CiVersionTests {
     
     public function __construct()
     {
-        $this->all_versions = array('1.0b', '1.1b', '1.2', '1.3', '1.3.1', '1.3.2', '1.3.3', '1.4.1', 
-                                    '1.5.1', '1.5.2', '1.5.3', '1.5.4', '1.6.0', '1.6.1', '1.6.2', '1.6.3', 
-                                    '1.7.0', '1.7.1', '1.7.2', '1.7.3', '2.0.0', '2.0.1', '2.0.2', '2.0.3', 
-                                    '2.1.0', '2.1.1', '2.1.2', '2.1.3', '2.1.4', '2.2.1', 
+        $this->all_versions = array('1.0b', '1.1b', '1.2', '1.3', '1.3.1', '1.3.2', '1.3.3', '1.4.1',
+                                    '1.5.1', '1.5.2', '1.5.3', '1.5.4', '1.6.0', '1.6.1', '1.6.2', '1.6.3',
+                                    '1.7.0', '1.7.1', '1.7.2', '1.7.3', '2.0.0', '2.0.1', '2.0.2', '2.0.3',
+                                    '2.1.0', '2.1.1', '2.1.2', '2.1.3', '2.1.4', '2.2.1',
                                     '3.0rc', '3.0rc2', '3.0rc3');
         $this->versions_left = $this->all_versions;
     }
     
+    private function highlightkeyword($str, $search)
+    {
+        $occurrences = substr_count(strtolower($str), strtolower($search));
+        $newstring = $str;
+        $match = array();
+        
+        for ($i=0;$i<$occurrences;++$i) {
+            $match[$i] = stripos($str, $search, $i);
+            $match[$i] = substr($str, $match[$i], strlen($search));
+            $newstring = str_replace($match[$i], '[#]'.$match[$i].'[@]', strip_tags($newstring));
+        }
+        
+        $newstring = str_replace('[#]', '<span style="background:green;color:white;">', $newstring);
+        $newstring = str_replace('[@]', '</span>', $newstring);
+        return $newstring;
+    } 
+    
     public function test($function, $testedVersion)
     {
         echo '<tr><td style="width:150px">' . $function;
-        echo '</td><td><pre>' . highlightkeyword(print_r($this->$function(), TRUE), '=> '.$testedVersion."\n").'</pre></tr></tr>';
+        echo '</td><td><pre>' . $this->highlightkeyword(print_r($this->$function(), TRUE), '=> ' . $testedVersion."\n") . '</pre></tr></tr>';
     }
     
-    public function user_guide_version() {
-        # Check the user_guide folder
+    public function user_guide_version()
+    {
         $return     = FALSE;
         $url        = $this->url . 'user_guide/';
         $response   = file_get_contents($url, TRUE);
-        //$headers    = $http_response_header[0];
-
         if ($http_response_header[0] !== 'HTTP/1.1 200 OK')
         {               
             return $return;
@@ -59,15 +74,13 @@ class CiVersionTests {
         return $return;
     }
     
-    public function application_folder() {
-        // Check application folder
+    public function application_folder()
+    {
         $return     = FALSE;
         $url        = $this->url . 'application/';
-        file_get_contents($url, TRUE);
-        //$headers    = $http_response_header[0];
-        //$possibleV    = $this->versions_left;
         $possibleV  = $this->all_versions;
         
+        file_get_contents($url, TRUE);
         if($http_response_header[0] === 'HTTP/1.1 403 Forbidden')
         {
             # version 2.0.0 or higher
@@ -85,31 +98,27 @@ class CiVersionTests {
         return $return;
     }
 
-    public function libraries_calendar() {
-        // Check /system/libraries/Calendar.php
-        //$return   = $this->versions_left;
-        $return     = 0;
+    public function libraries_calendar()
+    {
+        $return     = FALSE;
         $url        = $this->url . 'system/libraries/Calendar.php';
-        file_get_contents($url, TRUE);
-        //$headers    = $http_response_header[0];         
         
-        if($http_response_header[0] === 'HTTP/1.1 404 Not Found'){
+        file_get_contents($url, TRUE);        
+        if($http_response_header[0] === 'HTTP/1.1 404 Not Found')
+        {
             $return     = array('1.0b');
         }
         
         return $return;
     }
     
-    public function controllers_index_html() {
-        // Check /system/application/controllers/index.html 
-        //$return   = $this->versions_left;
-        $return     = 0;
+    public function controllers_index_html()
+    {
+        $return     = FALSE;
         $url        = $this->url . 'system/application/controllers/index.html';
-        file_get_contents($url, TRUE);
-        //$headers    = $http_response_header[0];
-        //$possibleV    = $this->versions_left;
         $possibleV  = $this->all_versions;
                         
+        file_get_contents($url, TRUE);
         if($http_response_header[0] === 'HTTP/1.1 404 Not Found')
         {
             # version 2.0.0 or higher
@@ -121,34 +130,30 @@ class CiVersionTests {
         return $return; 
     }
     
-    public function models_index_html() {
-        //$return   = $this->versions_left;
-        $return     = 0;
+    public function models_index_html()
+    {
+        $return     = FALSE;
         $url        = $this->url . 'system/application/models/index.html';
-        $response   = file_get_contents($url, TRUE);
-        //$headers    = $http_response_header[0];
-        //$possibleV    = $this->versions_left;
         $possibleV  = $this->all_versions;
-        
-            // als /system/application/models/index.html bestaat Version 1.3 or higher
-            if($http_response_header[0] === 'HTTP/1.1 404 Not Found'){
-                $ak         = array_search('1.2', $possibleV);
-                $return     = array_splice($possibleV, 0, $ak+1);
-                $this->versions_left = $return;
-                //echo '<strong>CodeIgniter version 1.2</strong><br>';
-            }
+
+        $response   = file_get_contents($url, TRUE);        
+        if($http_response_header[0] === 'HTTP/1.1 404 Not Found')
+        {
+            // if /system/application/models/index.html exists Version 1.3 or higher
+            $ak         = array_search('1.2', $possibleV);
+            $return     = array_splice($possibleV, 0, $ak+1);
+            $this->versions_left = $return;
+        }
         return $return; 
     }
     
-    public function license_txt() {
-        //$return   = $this->versions_left;
-        $return     = 0;
+    public function license_txt()
+    {
+        $return     = FALSE;
         $url        = $this->url . 'license.txt';
-        file_get_contents($url, TRUE);
-        //$headers    = $http_response_header[0];
-        //$possibleV    = $this->versions_left;
         $possibleV  = $this->all_versions;
         
+        file_get_contents($url, TRUE);
         // match pMachine = 1.5.2 or lower, match EllisLab = 1.5.3 or higher
         if ($http_response_header[0] !== 'HTTP/1.1 200 OK')
         {
@@ -198,23 +203,7 @@ class CiVersionTests {
 
 
 
-function highlightkeyword($str, $search) {
-    //$highlightcolor = "#daa732";
-    $occurrences = substr_count(strtolower($str), strtolower($search));
-    $newstring = $str;
-    $match = array();
- 
-    for ($i=0;$i<$occurrences;$i++) {
-        $match[$i] = stripos($str, $search, $i);
-        $match[$i] = substr($str, $match[$i], strlen($search));
-        $newstring = str_replace($match[$i], '[#]'.$match[$i].'[@]', strip_tags($newstring));
-    }
- 
-    $newstring = str_replace('[#]', '<span style="background:green;color:white;">', $newstring);
-    $newstring = str_replace('[@]', '</span>', $newstring);
-    return $newstring;
- 
-}   
+  
 
 
 
@@ -222,6 +211,7 @@ function highlightkeyword($str, $search) {
 
 
 
+// TEST CASE
 
 $opendir = opendir('C:\Users\KM\Desktop\CodeIgniterVersionTester\root\codeigniter-version-detect');
 
@@ -257,6 +247,13 @@ foreach($versions as $version){
     //$CiVersionTests->test('system_init_unit_test', $version);    
     echo '</table>';
 
+    
+    
+    
+    
+    
+    
+    
     
 // rebuild below to functions in class above
 /*

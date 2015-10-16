@@ -12,3 +12,9 @@ engines:
     enabled: true
   csslint:
     enabled: true
+  phpcodesniffer:
+    enabled: true
+  phpmd:
+    enabled: true
+  fixme:
+    enabled: true

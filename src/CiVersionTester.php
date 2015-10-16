@@ -136,7 +136,7 @@ class CiVersionTests {
         $url        = $this->url . 'system/application/models/index.html';
         $possibleV  = $this->all_versions;
 
-        $response   = file_get_contents($url, TRUE);        
+        file_get_contents($url, TRUE);        
         if($http_response_header[0] === 'HTTP/1.1 404 Not Found')
         {
             // if /system/application/models/index.html exists Version 1.3 or higher

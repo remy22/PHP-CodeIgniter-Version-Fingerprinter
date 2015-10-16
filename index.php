@@ -1,22 +1,22 @@
 <?php namespace CiVersionTester;
 
-    class CiVersionTests
-    {
+    class CiVersionTests {
         
-        public function __construct()
-        {
-            $this->all_versions = array('1.0b', '1.1b', '1.2', '1.3', '1.3.1', '1.3.2', '1.3.3', '1.4.1', '1.5.1', '1.5.2', '1.5.3', '1.5.4', '1.6.0', '1.6.1', '1.6.2', '1.6.3', '1.7.0', '1.7.1', '1.7.2', '1.7.3', '2.0.0', '2.0.1', '2.0.2', '2.0.3', '2.1.0', '2.1.1', '2.1.2', '2.1.3', '2.1.4', '2.2.1', '3.0rc', '3.0rc2', '3.0rc3');
+        public function __construct() {
+            $this->all_versions = array('1.0b', '1.1b', '1.2', '1.3', '1.3.1', '1.3.2', '1.3.3', '1.4.1', 
+                                        '1.5.1', '1.5.2', '1.5.3', '1.5.4', '1.6.0', '1.6.1', '1.6.2', '1.6.3', 
+                                        '1.7.0', '1.7.1', '1.7.2', '1.7.3', '2.0.0', '2.0.1', '2.0.2', '2.0.3', 
+                                        '2.1.0', '2.1.1', '2.1.2', '2.1.3', '2.1.4', '2.2.1', 
+                                        '3.0rc', '3.0rc2', '3.0rc3');
             $this->versions_left = $this->all_versions;
         }
         
-        public function test($function, $testedVersion)
-        {
+        public function test($function, $testedVersion) {
             echo '<tr><td style="width:150px">' . $function;
             echo '</td><td><pre>' . highlightkeyword(print_r($this->$function(), TRUE), '=> '.$testedVersion."\n").'</pre></tr></tr>';
         }
         
-        public function user_guide_version()
-        {
+        public function user_guide_version() {
             # Check the user_guide folder
             $return     = FALSE;
             $url        = $this->url . 'user_guide/';
@@ -57,8 +57,7 @@
             return $return;
         }
         
-        public function application_folder()
-        {
+        public function application_folder() {
             // Check application folder
             $return     = FALSE;
             $url        = $this->url . 'application/';
@@ -84,8 +83,7 @@
             return $return;
         }
     
-        public function libraries_calendar()
-        {
+        public function libraries_calendar() {
             // Check /system/libraries/Calendar.php
             //$return   = $this->versions_left;
             $return     = 0;
@@ -100,8 +98,7 @@
             return $return;
         }
         
-        public function controllers_index_html()
-        {
+        public function controllers_index_html() {
             // Check /system/application/controllers/index.html 
             //$return   = $this->versions_left;
             $return     = 0;
@@ -122,8 +119,7 @@
             return $return; 
         }
         
-        public function models_index_html()
-        {
+        public function models_index_html() {
             //$return   = $this->versions_left;
             $return     = 0;
             $url        = $this->url . 'system/application/models/index.html';
@@ -142,8 +138,7 @@
             return $return; 
         }
         
-        public function license_txt()
-        {
+        public function license_txt() {
             //$return   = $this->versions_left;
             $return     = 0;
             $url        = $this->url . 'license.txt';
@@ -195,31 +190,29 @@
                 }
             return $return; 
         }*/
-        
-        function testtt2(){ return; }
     }
 
 
 
 
     
-function highlightkeyword($str, $search) {
-    //$highlightcolor = "#daa732";
-    $occurrences = substr_count(strtolower($str), strtolower($search));
-    $newstring = $str;
-    $match = array();
- 
-    for ($i=0;$i<$occurrences;$i++) {
-        $match[$i] = stripos($str, $search, $i);
-        $match[$i] = substr($str, $match[$i], strlen($search));
-        $newstring = str_replace($match[$i], '[#]'.$match[$i].'[@]', strip_tags($newstring));
-    }
- 
-    $newstring = str_replace('[#]', '<span style="background:green;color:white;">', $newstring);
-    $newstring = str_replace('[@]', '</span>', $newstring);
-    return $newstring;
- 
-}   
+    function highlightkeyword($str, $search) {
+        //$highlightcolor = "#daa732";
+        $occurrences = substr_count(strtolower($str), strtolower($search));
+        $newstring = $str;
+        $match = array();
+     
+        for ($i=0;$i<$occurrences;$i++) {
+            $match[$i] = stripos($str, $search, $i);
+            $match[$i] = substr($str, $match[$i], strlen($search));
+            $newstring = str_replace($match[$i], '[#]'.$match[$i].'[@]', strip_tags($newstring));
+        }
+     
+        $newstring = str_replace('[#]', '<span style="background:green;color:white;">', $newstring);
+        $newstring = str_replace('[@]', '</span>', $newstring);
+        return $newstring;
+     
+    }   
     
     
     
@@ -259,88 +252,83 @@ function highlightkeyword($str, $search) {
         $CiVersionTests->test('libraries_calendar', $version);
         $CiVersionTests->test('models_index_html', $version);
         $CiVersionTests->test('license_txt', $version);
-        //$CiVersionTests->test('system_init_unit_test', $version);
-        
-        
-    
+        //$CiVersionTests->test('system_init_unit_test', $version);    
         echo '</table>';
 
         
-        
-        
-// rebuild below to functions in class above
-/*
-        
-        $GO = false;
-        
-        if($GO){
+    // rebuild below to functions in class above
+    /*
+            
             $GO = false;
-
-            
-            
-
-            
             
             if($GO){
                 $GO = false;
-                // als system/init/init_unit_test.php bestaat is het versie 1.3.1 of hoger
-                $response6 = file_get_contents($uri.'system/init/init_unit_test.php', true);
-                $response6header = $http_response_header[0];
+    
                 
-                if($http_response_header[0] === 'HTTP/1.1 404 Not Found'){
-                    echo 'CodeIgniter version 1.3 or version 1.5.1 or higher<br>';
-                }else{
-                    $GO = true;
-                    // go on
+                
+    
+                
+                
+                if($GO){
+                    $GO = false;
+                    // als system/init/init_unit_test.php bestaat is het versie 1.3.1 of hoger
+                    $response6 = file_get_contents($uri.'system/init/init_unit_test.php', true);
+                    $response6header = $http_response_header[0];
+                    
+                    if($http_response_header[0] === 'HTTP/1.1 404 Not Found'){
+                        echo 'CodeIgniter version 1.3 or version 1.5.1 or higher<br>';
+                    }else{
+                        $GO = true;
+                        // go on
+                    }
                 }
-            }
+                
+                if($GO){
+                    $GO = false;
+                    // als system/init/init_unit_test.php bestaat is het versie 1.3.1 of hoger
+                    $response7 = file_get_contents($uri.'system/init/init_unit_test.php', true);
+                    $response7header = $http_response_header[0];
+                    
+                    if($http_response_header[0] === 'HTTP/1.1 404 Not Found'){
+                        echo '<strong>CodeIgniter version 1.3.1 or higher</strong><br>';
+    
+                    }else{
+                        $GO = true;
+                        // go on
+                    }
+                }
+                
+                if($GO){
+                    $GO = false;
+                    // als system/application/scripts bestaat is het versie 1.3.1 of hoger
+                    $response8 = file_get_contents($uri.'system/application/scripts/', true);
+                    $response8header = $http_response_header[0];
+                    
+                    if($http_response_header[0] === 'HTTP/1.1 200 OK'){
+                        echo '<strong>CodeIgniter version 1.3.1 or 1.3.2 or 1.3.3</strong><br>';
+                    }else{
+                        $GO = true;
+                        // go on
+                    }
+                }
+                
+                if($GO){
+                    $GO = false;
+                    // /system/application/config/smileys.php bestaat = 1.4.1 of hoger
+                    $response8 = file_get_contents($uri.'system/application/config/smileys.php', true);
+                    $response8header = $http_response_header[0];
+                    
+                    if($http_response_header[0] === 'HTTP/1.1 404 Not Found'){
+                        echo '<strong>CodeIgniter version 1.4.1</strong><br>';
+                    }else{
+                        $GO = true;
+                        // go on
+                    }
+                }
             
-            if($GO){
-                $GO = false;
-                // als system/init/init_unit_test.php bestaat is het versie 1.3.1 of hoger
-                $response7 = file_get_contents($uri.'system/init/init_unit_test.php', true);
-                $response7header = $http_response_header[0];
-                
-                if($http_response_header[0] === 'HTTP/1.1 404 Not Found'){
-                    echo '<strong>CodeIgniter version 1.3.1 or higher</strong><br>';
-
-                }else{
-                    $GO = true;
-                    // go on
-                }
+                //print_r($avv);
             }
+            echo '<hr>';
             
-            if($GO){
-                $GO = false;
-                // als system/application/scripts bestaat is het versie 1.3.1 of hoger
-                $response8 = file_get_contents($uri.'system/application/scripts/', true);
-                $response8header = $http_response_header[0];
-                
-                if($http_response_header[0] === 'HTTP/1.1 200 OK'){
-                    echo '<strong>CodeIgniter version 1.3.1 or 1.3.2 or 1.3.3</strong><br>';
-                }else{
-                    $GO = true;
-                    // go on
-                }
-            }
-            
-            if($GO){
-                $GO = false;
-                // /system/application/config/smileys.php bestaat = 1.4.1 of hoger
-                $response8 = file_get_contents($uri.'system/application/config/smileys.php', true);
-                $response8header = $http_response_header[0];
-                
-                if($http_response_header[0] === 'HTTP/1.1 404 Not Found'){
-                    echo '<strong>CodeIgniter version 1.4.1</strong><br>';
-                }else{
-                    $GO = true;
-                    // go on
-                }
-            }
-        
-            //print_r($avv);
         }
-        echo '<hr>';
-        
-    }
-*/
+    */

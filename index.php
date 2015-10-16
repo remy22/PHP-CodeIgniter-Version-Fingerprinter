@@ -21,7 +21,7 @@
             $return     = FALSE;
             $url        = $this->url . 'user_guide/';
             $response   = file_get_contents($url, TRUE);
-            $headers    = $http_response_header[0];
+            //$headers    = $http_response_header[0];
 
             if ($http_response_header[0] !== 'HTTP/1.1 200 OK')
             {               
@@ -62,8 +62,8 @@
             // Check application folder
             $return     = FALSE;
             $url        = $this->url . 'application/';
-            $response   = file_get_contents($url, TRUE);
-            $headers    = $http_response_header[0];
+            file_get_contents($url, TRUE);
+            //$headers    = $http_response_header[0];
             //$possibleV    = $this->versions_left;
             $possibleV  = $this->all_versions;
             
@@ -90,8 +90,8 @@
             //$return   = $this->versions_left;
             $return     = 0;
             $url        = $this->url . 'system/libraries/Calendar.php';
-            $response   = file_get_contents($url, TRUE);
-            $headers    = $http_response_header[0];         
+            file_get_contents($url, TRUE);
+            //$headers    = $http_response_header[0];         
             
             if($http_response_header[0] === 'HTTP/1.1 404 Not Found'){
                 $return     = array('1.0b');
@@ -106,8 +106,8 @@
             //$return   = $this->versions_left;
             $return     = 0;
             $url        = $this->url . 'system/application/controllers/index.html';
-            $response   = file_get_contents($url, TRUE);
-            $headers    = $http_response_header[0];
+            file_get_contents($url, TRUE);
+            //$headers    = $http_response_header[0];
             //$possibleV    = $this->versions_left;
             $possibleV  = $this->all_versions;
                             
@@ -128,7 +128,7 @@
             $return     = 0;
             $url        = $this->url . 'system/application/models/index.html';
             $response   = file_get_contents($url, TRUE);
-            $headers    = $http_response_header[0];
+            //$headers    = $http_response_header[0];
             //$possibleV    = $this->versions_left;
             $possibleV  = $this->all_versions;
             
@@ -147,8 +147,8 @@
             //$return   = $this->versions_left;
             $return     = 0;
             $url        = $this->url . 'license.txt';
-            $response   = file_get_contents($url, TRUE);
-            $headers    = $http_response_header[0];
+            file_get_contents($url, TRUE);
+            //$headers    = $http_response_header[0];
             //$possibleV    = $this->versions_left;
             $possibleV  = $this->all_versions;
             
@@ -204,7 +204,7 @@
 
     
 function highlightkeyword($str, $search) {
-    $highlightcolor = "#daa732";
+    //$highlightcolor = "#daa732";
     $occurrences = substr_count(strtolower($str), strtolower($search));
     $newstring = $str;
     $match = array();

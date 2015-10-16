@@ -5,6 +5,7 @@ class CiVersionTests
     
     public function __construct()
     {
+	    $this->url			= 'http://localhost:8080/codeigniter-version-detect/test/';
         $this->all_versions = array('1.0b', '1.1b', '1.2', '1.3', '1.3.1', '1.3.2', '1.3.3', '1.4.1',
                                     '1.5.1', '1.5.2', '1.5.3', '1.5.4', '1.6.0', '1.6.1', '1.6.2', '1.6.3',
                                     '1.7.0', '1.7.1', '1.7.2', '1.7.3', '2.0.0', '2.0.1', '2.0.2', '2.0.3',
@@ -144,7 +145,7 @@ class CiVersionTests
             // if /system/application/models/index.html exists Version 1.3 or higher
 			$possibleV  = $this->all_versions;
             $ak         = array_search('1.2', $possibleV);
-            $return     = array_splice($possibleV, 0, $ak+1);
+            $return     = array_splice($possibleV, 0, $ak + 1);
             $this->versions_left = $return;
         }
         return $return;

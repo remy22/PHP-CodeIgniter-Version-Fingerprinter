@@ -96,7 +96,7 @@ class CiVersionTests
             $return     = array_splice($possibleV, $ak);
             $this->versions_left = $return;
             return $return;
-        }       
+        }
         
         # version 1.7.3 or lower
         $ak         = array_search('1.7.3', $possibleV);
@@ -131,7 +131,7 @@ class CiVersionTests
             $this->versions_left = $return;
         }
         
-        return $return; 
+        return $return;
     }
     
     public function models_index_html()
@@ -147,7 +147,7 @@ class CiVersionTests
             $return     = array_splice($possibleV, 0, $ak+1);
             $this->versions_left = $return;
         }
-        return $return; 
+        return $return;
     }
     
     public function license_txt()
@@ -165,7 +165,7 @@ class CiVersionTests
         
         file_get_contents($url, true);
         preg_match('/EllisLab/', $response, $m);
-        if($m){
+        if ($m){
             $ak         = array_search('1.5.3', $possibleV);
             $return     = array_splice($possibleV, $ak);
             $this->versions_left = $return;
@@ -173,7 +173,7 @@ class CiVersionTests
         }
         
         preg_match('/pMachine/', $response, $n);
-        if($n){
+        if ($n){
             $ak         = array_search('1.5.2', $possibleV);
             $return     = array_splice($possibleV, 0, $ak+1);
             $this->versions_left = $return;
@@ -220,16 +220,20 @@ class CiVersionTests
 $opendir = opendir('C:\Users\KM\Desktop\CodeIgniterVersionTester\root\codeigniter-version-detect');
 
 $versions = array();
-while($dirname=readdir($opendir)){
-    if($dirname != '.' && $dirname != '..'){
-        if(substr($dirname,0,11) == 'CodeIgniter'){
+while ($dirname = readdir($opendir))
+{
+    if ($dirname != '.' && $dirname != '..')
+    {
+        if (substr($dirname,0,11) == 'CodeIgniter')
+        {
             $versions[] = $dirname;
         }
     }
 }
 
 
-foreach($versions as $version){
+foreach ($versions as $version)
+{
     $CiVersionTests = new CiVersionTests;
     $uri = 'http://localhost:8080/codeigniter-version-detect/'.$version.'/'.$version.'/';
     $CiVersionTests->url = $uri;
@@ -248,7 +252,7 @@ foreach($versions as $version){
     $CiVersionTests->test('libraries_calendar', $version);
     $CiVersionTests->test('models_index_html', $version);
     $CiVersionTests->test('license_txt', $version);
-    //$CiVersionTests->test('system_init_unit_test', $version);    
+    //$CiVersionTests->test('system_init_unit_test', $version);
     echo '</table>';
 }
     

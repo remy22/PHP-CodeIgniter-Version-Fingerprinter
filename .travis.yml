@@ -6,8 +6,11 @@ php:
 addons:
     code_climate:
         repo_token: 6cef356f8bc0802a667d2d49cb8498a3da90eedf9f24d61b7f6984fb60195f18
-
+ 
 after_script:
-    - vendor/bin/test-reporter
-    
-script: phpunit -h
+  - vendor/bin/test-reporter
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+   
+#script: phpunit -h
+script: phpunit --coverage-clover=coverage.clover

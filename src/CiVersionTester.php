@@ -162,7 +162,8 @@ class CiVersionTests
         }
         
         $possibleV = $this->all_versions;
-        
+        $response = file_get_contents($url, true);
+
         file_get_contents($url, true);
         preg_match('/EllisLab/', $response, $m);
         if ($m){

@@ -246,7 +246,7 @@ foreach($versions as $version){
     $CiVersionTests->test('license_txt', $version);
     //$CiVersionTests->test('system_init_unit_test', $version);    
     echo '</table>';
-
+}
     
     
     

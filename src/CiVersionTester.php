@@ -67,20 +67,28 @@ class CiVersionTests
         }
         
         # check version == 3.0rc
-        preg_match('/Jan 26, 2015/', $response, $m);
-        if (count($m)>0) { $return  = '3.0rc'; }
+        preg_match('/Jan 26, 2015/', $response, $match);
+        if (count($match) > 0)
+        {
+	        $return  = '3.0rc';
+	    }
         
         # check version == 3.0rc2
-        preg_match('/Feb 03, 2015/', $response, $m);
-        if (count($m)>0) { $return  = '3.0rc2'; }
+        preg_match('/Feb 03, 2015/', $response, $match);
+        if (count($match) > 0)
+        {
+	        $return  = '3.0rc2';
+	    }
         
         # check version == 3.0rc3
-        preg_match('/Mar 10, 2015/', $response, $m);
-        if (count($m)>0) { $return  = '3.0rc3'; }
+        preg_match('/Mar 10, 2015/', $response, $match);
+        if (count($match) > 0) 
+        {
+	        $return  = '3.0rc3';
+        }
         
         $return = array($return);
         $this->versions_left = $return;
-        
         return $return;
     }
     
@@ -166,18 +174,18 @@ class CiVersionTests
         $response = file_get_contents($url, true);
 
         file_get_contents($url, true);
-        preg_match('/EllisLab/', $response, $m);
-        if ($m){
+        preg_match('/EllisLab/', $response, $ematch);
+        if ($ematch){
             $ak         = array_search('1.5.3', $possibleV);
             $return     = array_splice($possibleV, $ak);
             $this->versions_left = $return;
             return $return; 
         }
         
-        preg_match('/pMachine/', $response, $n);
-        if ($n){
+        preg_match('/pMachine/', $response, $pmatch);
+        if ($pmatch){
             $ak         = array_search('1.5.2', $possibleV);
-            $return     = array_splice($possibleV, 0, $ak+1);
+            $return     = array_splice($possibleV, 0, $ak + 1);
             $this->versions_left = $return;
         }
         

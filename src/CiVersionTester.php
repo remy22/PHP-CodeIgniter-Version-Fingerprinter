@@ -26,7 +26,8 @@ class CiVersionTests
         $newstring = $str;
         $match = array();
         
-        for ($i=0; $i<$occurrences; ++$i) {
+        for ($i=0; $i<$occurrences; ++$i) 
+        {
             $match[$i] = stripos($str, $search, $i);
             $match[$i] = substr($str, $match[$i], strlen($search));
             $newstring = str_replace($match[$i], '[#]' . $match[$i] . '[@]', strip_tags($newstring));
@@ -50,7 +51,7 @@ class CiVersionTests
         $return     = false;
         $url        = $this->url . 'user_guide/';
         if ($this->getHttpResponseCode($url) !== 200)
-        {               
+        {
             return $return;
         }
 
@@ -60,31 +61,39 @@ class CiVersionTests
         if (substr($m[1], 0, 11) === '>Code Ignit' || substr($m[1], 0, 11) === '>CodeIgnite')
         {
             # version found in user_guide
-            $version    = trim(strip_tags(str_replace(array('>Code Igniter User Guide Version', '>CodeIgniter User Guide Version'), '', $m[1])));   
+            $version    = trim(strip_tags(str_replace(array('>Code Igniter User Guide Version',
+                                                            '>CodeIgniter User Guide Version'), '', $m[1])));
             $return     = $version;
-            if($version == '1.0'){ $return = '1.0b'; }
-            if($version == 'Beta 1.1'){ $return = '1.1b'; }
+            if ($version == '1.0')
+            {
+                $return = '1.0b';
+            }
+            
+            if ($version == 'Beta 1.1')
+            {
+                $return = '1.1b';
+            }
         }
         
         # check version == 3.0rc
         preg_match('/Jan 26, 2015/', $response, $match);
         if (count($match) > 0)
         {
-	        $return  = '3.0rc';
-	    }
+            $return  = '3.0rc';
+        }
         
         # check version == 3.0rc2
         preg_match('/Feb 03, 2015/', $response, $match);
         if (count($match) > 0)
         {
-	        $return  = '3.0rc2';
-	    }
+            $return  = '3.0rc2';
+        }
         
         # check version == 3.0rc3
         preg_match('/Mar 10, 2015/', $response, $match);
-        if (count($match) > 0) 
+        if (count($match) > 0)
         {
-	        $return  = '3.0rc3';
+            $return  = '3.0rc3';
         }
         
         $return = array($return);
@@ -101,15 +110,15 @@ class CiVersionTests
         if ($this->getHttpResponseCode($url) === 403)
         {
             # version 2.0.0 or higher
-            $ak         = array_search('2.0.0', $possibleV);
-            $return     = array_splice($possibleV, $ak);
+            $akey       = array_search('2.0.0', $possibleV);
+            $return     = array_splice($possibleV, $akey);
             $this->versions_left = $return;
             return $return;
         }
         
         # version 1.7.3 or lower
-        $ak         = array_search('1.7.3', $possibleV);
-        $return     = array_splice($possibleV, 0, $ak+1);
+        $akey       = array_search('1.7.3', $possibleV);
+        $return     = array_splice($possibleV, 0, $akey + 1);
         $this->versions_left = $return;
         
         return $return;
@@ -135,8 +144,8 @@ class CiVersionTests
         {
             # version 2.0.0 or higher
             $possibleV  = $this->all_versions;
-            $ak         = array_search('1.2', $possibleV);
-            $return     = array_splice($possibleV, 0, $ak);
+            $akey       = array_search('1.2', $possibleV);
+            $return     = array_splice($possibleV, 0, $akey);
             $this->versions_left = $return;
         }
         
@@ -152,13 +161,13 @@ class CiVersionTests
         {
             // if /system/application/models/index.html exists Version 1.3 or higher
             $possibleV  = $this->all_versions;
-            $ak         = array_search('1.2', $possibleV);
-            $return     = array_splice($possibleV, 0, $ak + 1);
+            $akey       = array_search('1.2', $possibleV);
+            $return     = array_splice($possibleV, 0, $akey + 1);
             $this->versions_left = $return;
         }
         return $return;
     }
-    
+
     public function licenseTxt()
     {
         $return     = false;
@@ -167,7 +176,7 @@ class CiVersionTests
         // match pMachine = 1.5.2 or lower, match EllisLab = 1.5.3 or higher
         if ($this->getHttpResponseCode($url) !== 200)
         {
-            return $return; 
+            return $return;
         }
         
         $possibleV = $this->all_versions;
@@ -175,21 +184,23 @@ class CiVersionTests
 
         file_get_contents($url, true);
         preg_match('/EllisLab/', $response, $ematch);
-        if ($ematch){
-            $ak         = array_search('1.5.3', $possibleV);
-            $return     = array_splice($possibleV, $ak);
+        if ($ematch)
+        {
+            $akey       = array_search('1.5.3', $possibleV);
+            $return     = array_splice($possibleV, $akey);
             $this->versions_left = $return;
-            return $return; 
+            return $return;
         }
         
         preg_match('/pMachine/', $response, $pmatch);
-        if ($pmatch){
-            $ak         = array_search('1.5.2', $possibleV);
-            $return     = array_splice($possibleV, 0, $ak + 1);
+        if ($pmatch)
+        {
+            $akey       = array_search('1.5.2', $possibleV);
+            $return     = array_splice($possibleV, 0, $akey + 1);
             $this->versions_left = $return;
         }
         
-        return $return; 
+        return $return;
     }
     
     /*public function system_init_unit_test()
@@ -205,10 +216,10 @@ class CiVersionTests
             if($http_response_header[0] === 'HTTP/1.1 404 Not Found')
             {
                 //echo 'CodeIgniter version 1.3 or version 1.5.1 or higher<br>';
-                $ak         = array_search('1.3.1', $possibleV);
-                $return     = array_splice($possibleV, $ak);
+                $akey         = array_search('1.3.1', $possibleV);
+                $return     = array_splice($possibleV, $akey);
                 $this->versions_left = $return;
             }
-        return $return; 
+        return $return;
     }*/
 }

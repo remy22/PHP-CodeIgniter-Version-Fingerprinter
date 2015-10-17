@@ -32,12 +32,12 @@ foreach ($versions as $version)
     echo '<br>Testing version ' . $version . ' ... ';
 
     echo '<table style="font-size:11px">';
-    $CiVersionTests->test('controllers_index_html', $version);
-    $CiVersionTests->test('user_guide_version', $version);
-    $CiVersionTests->test('application_folder', $version);
-    $CiVersionTests->test('libraries_calendar', $version);
-    $CiVersionTests->test('models_index_html', $version);
-    $CiVersionTests->test('license_txt', $version);
+    $CiVersionTests->test('controllersIndexHtml', $version);
+    $CiVersionTests->test('userGuideVersion', $version);
+    $CiVersionTests->test('applicationFolder', $version);
+    $CiVersionTests->test('librariesCalendar', $version);
+    $CiVersionTests->test('modelsIndexHtml', $version);
+    $CiVersionTests->test('licenseTxt', $version);
     //$CiVersionTests->test('system_init_unit_test', $version);
     echo '</table>';
 }

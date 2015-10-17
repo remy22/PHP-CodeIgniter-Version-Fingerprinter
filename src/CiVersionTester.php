@@ -1,11 +1,11 @@
 <?php namespace CiVersionTester;
 
-class CiVersionTests 
+class CiVersionTests
 {
     
     public function __construct()
     {
-	    $this->url			= 'http://localhost:8080/codeigniter-version-detect/test/';
+        $this->url          = 'http://localhost:8080/codeigniter-version-detect/test/';
         $this->all_versions = array('1.0b', '1.1b', '1.2', '1.3', '1.3.1', '1.3.2', '1.3.3', '1.4.1',
                                     '1.5.1', '1.5.2', '1.5.3', '1.5.4', '1.6.0', '1.6.1', '1.6.2', '1.6.3',
                                     '1.7.0', '1.7.1', '1.7.2', '1.7.3', '2.0.0', '2.0.1', '2.0.2', '2.0.3',
@@ -14,13 +14,13 @@ class CiVersionTests
         $this->versions_left = $this->all_versions;
     }
     
-    private function get_http_response_code($url)
+    private function getHttpResponseCode($url)
     {
-    	$headers = get_headers($url);
-		return intval(substr($headers[0], 9, 3));
-	}
-	
-    private function highlightkeyword($str, $search)
+        $headers = get_headers($url);
+        return intval(substr($headers[0], 9, 3));
+    }
+    
+    private function highlightKeyword($str, $search)
     {
         $occurrences = substr_count(strtolower($str), strtolower($search));
         $newstring = $str;
@@ -40,16 +40,16 @@ class CiVersionTests
     public function test($function, $testedVersion)
     {
         echo '<tr><td style="width:150px">', $function,
-        	 '</td><td><pre>',
-			 $this->highlightkeyword(print_r($this->$function(), true), '=> ' . $testedVersion . "\n"),
-			 '</pre></tr></tr>';
+             '</td><td><pre>',
+             $this->highlightKeyword(print_r($this->$function(), true), '=> ' . $testedVersion . "\n"),
+             '</pre></tr></tr>';
     }
     
-    public function user_guide_version()
+    public function userGuideVersion()
     {
         $return     = false;
         $url        = $this->url . 'user_guide/';
-        if ($this->get_http_response_code($url) !== 200)
+        if ($this->getHttpResponseCode($url) !== 200)
         {               
             return $return;
         }
@@ -60,7 +60,7 @@ class CiVersionTests
         if (substr($m[1], 0, 11) === '>Code Ignit' || substr($m[1], 0, 11) === '>CodeIgnite')
         {
             # version found in user_guide
-            $version    = trim(strip_tags(str_replace(array('>Code Igniter User Guide Version', '>CodeIgniter User Guide Version'), '', $m[1])));	
+            $version    = trim(strip_tags(str_replace(array('>Code Igniter User Guide Version', '>CodeIgniter User Guide Version'), '', $m[1])));   
             $return     = $version;
             if($version == '1.0'){ $return = '1.0b'; }
             if($version == 'Beta 1.1'){ $return = '1.1b'; }
@@ -84,13 +84,13 @@ class CiVersionTests
         return $return;
     }
     
-    public function application_folder()
+    public function applicationFolder()
     {
         $return     = false;
         $url        = $this->url . 'application/';
         $possibleV  = $this->all_versions;
-        
-        if ($this->get_http_response_code($url) === 403)
+
+        if ($this->getHttpResponseCode($url) === 403)
         {
             # version 2.0.0 or higher
             $ak         = array_search('2.0.0', $possibleV);
@@ -107,26 +107,26 @@ class CiVersionTests
         return $return;
     }
 
-    public function libraries_calendar()
+    public function librariesCalendar()
     {
         $url = $this->url . 'system/libraries/Calendar.php';
-        if ($this->get_http_response_code($url) === 404)
+        if ($this->getHttpResponseCode($url) === 404)
         {
             return array('1.0b');
         }
-        
+
         return false;
     }
     
-    public function controllers_index_html()
+    public function controllersIndexHtml()
     {
         $return     = false;
         $url        = $this->url . 'system/application/controllers/index.html';
                                 
-        if ($this->get_http_response_code($url) === 404)
+        if ($this->getHttpResponseCode($url) === 404)
         {
             # version 2.0.0 or higher
-			$possibleV  = $this->all_versions;
+            $possibleV  = $this->all_versions;
             $ak         = array_search('1.2', $possibleV);
             $return     = array_splice($possibleV, 0, $ak);
             $this->versions_left = $return;
@@ -135,15 +135,15 @@ class CiVersionTests
         return $return;
     }
     
-    public function models_index_html()
+    public function modelsIndexHtml()
     {
         $return     = false;
         $url        = $this->url . 'system/application/models/index.html';
 
-        if ($this->get_http_response_code($url) === 404)
+        if ($this->getHttpResponseCode($url) === 404)
         {
             // if /system/application/models/index.html exists Version 1.3 or higher
-			$possibleV  = $this->all_versions;
+            $possibleV  = $this->all_versions;
             $ak         = array_search('1.2', $possibleV);
             $return     = array_splice($possibleV, 0, $ak + 1);
             $this->versions_left = $return;
@@ -151,13 +151,13 @@ class CiVersionTests
         return $return;
     }
     
-    public function license_txt()
+    public function licenseTxt()
     {
         $return     = false;
         $url        = $this->url . 'license.txt';
         
         // match pMachine = 1.5.2 or lower, match EllisLab = 1.5.3 or higher
-        if ($this->get_http_response_code($url) !== 200)
+        if ($this->getHttpResponseCode($url) !== 200)
         {
             return $return; 
         }

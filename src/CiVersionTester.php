@@ -139,7 +139,7 @@ class CiVersionTests
     {
         $return     = false;
         $url        = $this->url . 'system/application/controllers/index.html';
-                                
+
         if ($this->getHttpResponseCode($url) === 404)
         {
             # version 2.0.0 or higher

@@ -8,7 +8,7 @@ $opendir = opendir('C:\Users\KM\Desktop\CodeIgniterVersionTester\root\codeignite
 $versions = array();
 while ($dirname = readdir($opendir)) {
     if ($dirname != '.' && $dirname != '..') {
-        if (substr($dirname,0,11) == 'CodeIgniter') {
+        if (substr($dirname, 0, 11) == 'CodeIgniter') {
             $versions[] = $dirname;
         }
     }

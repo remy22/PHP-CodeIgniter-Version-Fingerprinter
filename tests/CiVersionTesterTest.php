@@ -16,6 +16,19 @@ class CiVersionTesterTest extends PHPUnit_Framework_TestCase
         $this->assertTrue((boolean) count((array) new CiVersionTester\CiVersionTests('http://www.example.com')));
     }
     
+    public function testDracula()
+    {
+        $version = '3.0rc2';
+        $ciVersionTests = new CiVersionTester\CiVersionTests('http://www.dracula-technologies.com/');
+        $ciVersionTests->test('controllersIndexHtml', $version);
+        $ciVersionTests->test('userGuideVersion', $version);
+        $ciVersionTests->test('applicationFolder', $version);
+        $ciVersionTests->test('librariesCalendar', $version);
+        $ciVersionTests->test('modelsIndexHtml', $version);
+        $ciVersionTests->test('licenseTxt', $version);
+        $ciVersionTests->test('systemInitUnitTest', $version);
+    }
+
     public function testCi()
     {
         $version = '3.0.3';

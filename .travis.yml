@@ -14,7 +14,7 @@ before_script:
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
    
-script: phpunit -h
+script: phpunit -h 2>/dev/null
 
 before_install:
   - pip install --user codecov

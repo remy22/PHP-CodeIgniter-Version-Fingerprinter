@@ -12,7 +12,11 @@ class CiVersionTests
     public function __construct($url = null)
     {
         if (empty($url)) {
-            return FALSE;
+            unset($this->url);
+            unset($this->all_versions);
+            unset($this->versions_left);
+            unset($this);
+            return;
         }
         $this->url = $url;
         $this->all_versions = array('1.0b', '1.1b', '1.2', '1.3', '1.3.1', '1.3.2', '1.3.3', '1.4.1',
@@ -21,6 +25,18 @@ class CiVersionTests
                                     '2.1.0', '2.1.1', '2.1.2', '2.1.3', '2.1.4', '2.2.1',
                                     '3.0rc', '3.0rc2', '3.0rc3');
         $this->versions_left = $this->all_versions;
+    }
+    
+    /**
+     * @param string $function
+     * @param string $testedVersion
+     */
+    public function test($function, $testedVersion)
+    {
+        if (empty($this->url)) {
+            return FALSE;
+        }
+        echo $this->highlightKeyword(print_r($this->$function(), true), '=> ' . $testedVersion . "\n");
     }
     
     /**
@@ -55,15 +71,6 @@ class CiVersionTests
         $newstring = str_replace('[#]', '<span style="background:green;color:white;">', $newstring);
         $newstring = str_replace('[@]', '</span>', $newstring);
         return $newstring;
-    }
-    
-    /**
-     * @param string $function
-     * @param string $testedVersion
-     */
-    public function test($function, $testedVersion)
-    {
-        echo $this->highlightKeyword(print_r($this->$function(), true), '=> ' . $testedVersion . "\n");
     }
     
     private function userGuideVersion()

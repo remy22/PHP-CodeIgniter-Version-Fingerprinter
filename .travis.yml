@@ -15,4 +15,9 @@ before_script:
   - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
    
 script: phpunit -h
+
+before_install:
+  - pip install codecov
+after_success:
+  - codecov
 #script: phpunit --coverage-clover=coverage.clover

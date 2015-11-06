@@ -94,7 +94,7 @@ class CiVersionTests
             return $return;
         }
 
-        $response = getHttpContents($url);
+        $response = $this->getHttpContents($url);
         # check version < 3.0rc
         preg_match('/h1(.*)</', $response, $matched);
         if (substr($matched[1], 0, 11) === '>Code Ignit' || substr($matched[1], 0, 11) === '>CodeIgnite') {
@@ -207,7 +207,7 @@ class CiVersionTests
         }
         
         $possibleV = $this->all_versions;
-        $response = getHttpContents($url);
+        $response = $this->getHttpContents($url);
 
         preg_match('/EllisLab/', $response, $ematch);
         if ($ematch) {

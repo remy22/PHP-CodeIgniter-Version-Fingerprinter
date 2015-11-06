@@ -1,6 +1,6 @@
 <?php namespace CiVersionTester;
 
-//require __DIR__ . '/../src/autoload.php';
+require_once 'PHPUnit/Autoload.php';
 require __DIR__ . '/../src/CiVersionTester.class.php';
 
 class CiVersionTesterTest extends PHPUnit_Framework_TestCase

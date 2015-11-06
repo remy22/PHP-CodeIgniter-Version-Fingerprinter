@@ -2,6 +2,9 @@
 
 class CiVersionTests
 {
+    public $url;
+    public $all_versions;
+    public $versions_left;
     
     public function __construct()
     {

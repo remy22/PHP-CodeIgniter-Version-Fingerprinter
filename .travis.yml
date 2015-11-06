@@ -10,7 +10,7 @@ php:
     - hhvm
 language: php
 before_install:
-    - composer self-update
+#    - composer self-update
     - pip install --user codecov
 before_script:
     - wget https://scrutinizer-ci.com/ocular.phar

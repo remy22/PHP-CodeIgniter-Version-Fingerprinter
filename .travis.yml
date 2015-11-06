@@ -1,5 +1,2 @@
 language: php
-before_install:
-  - pip install --user codecov
-after_success:
-  - codecov
+script: build.sh

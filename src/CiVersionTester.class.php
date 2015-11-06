@@ -90,11 +90,11 @@ class CiVersionTests
                                                             '>CodeIgniter User Guide Version'), '', $matched[1])));
         }
 
-        if ($version === '1.0') {
+        if ($return === '1.0') {
             $return = '1.0b';
         }
 
-        if ($version === 'Beta 1.1') {
+        if ($return === 'Beta 1.1') {
             $return = '1.1b';
         }
 

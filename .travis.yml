@@ -16,8 +16,8 @@ before_script:
    
 script: phpunit -h 2>/dev/null
 
-before_install:
-  - pip install --user codecov
+install:
+    pip install codecov
 after_success:
-  - codecov --token=525c3a38-f2c4-4b56-9f98-435db3190079
+    codecov
 #script: phpunit --coverage-clover=coverage.clover

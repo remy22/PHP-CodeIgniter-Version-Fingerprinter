@@ -3,7 +3,7 @@
 <phpunit bootstrap="src/autoload.php">
     <testsuites>
         <testsuite name="Example">
-            <file>./tests/test.php</file>
+            <file>./tests/CiVersionTesterTest.php</file>
         </testsuite>
     </testsuites>
 </phpunit>

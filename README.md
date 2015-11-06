@@ -3,30 +3,27 @@ CodeIgniter version tester
 
 travis-ci
 ---
-<a href="https://travis-ci.org/Calico90/codeigniter-version-test">
-  <img src="https://travis-ci.org/Calico90/codeigniter-version-test.svg" />
-</a>
+
+[![Build Status](https://travis-ci.org/Calico90/codeigniter-version-tester.svg)](https://travis-ci.org/Calico90/codeigniter-version-tester)
 
 
 codeclimate
 ---
 
-<a href="https://codeclimate.com/github/Calico90/codeigniter-version-test">
-  <img src="https://codeclimate.com/github/Calico90/codeigniter-version-test/badges/gpa.svg" />
-</a>
-<a href="https://codeclimate.com/github/Calico90/codeigniter-version-test/coverage">
-  <img src="https://codeclimate.com/github/Calico90/codeigniter-version-test/badges/coverage.svg" />
-</a>
+[![Code Climate](https://codeclimate.com/github/Calico90/codeigniter-version-tester/badges/gpa.svg)](https://codeclimate.com/github/Calico90/codeigniter-version-tester)
+
+[![Test Coverage](https://codeclimate.com/github/Calico90/codeigniter-version-tester/badges/coverage.svg)](https://codeclimate.com/github/Calico90/codeigniter-version-tester/coverage)
 
 
 
 scrutinizer-ci
 ---
 
-<img src="https://scrutinizer-ci.com/g/Calico90/codeigniter-version-test/badges/build.png?b=master" />
-<img src="https://scrutinizer-ci.com/g/Calico90/codeigniter-version-test/badges/quality-score.png?b=master" />
-<img src="https://scrutinizer-ci.com/g/Calico90/codeigniter-version-test/badges/coverage.png?b=master" />
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Calico90/codeigniter-version-tester/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Calico90/codeigniter-version-tester/?branch=master)
 
+[![Code Coverage](https://scrutinizer-ci.com/g/Calico90/codeigniter-version-tester/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Calico90/codeigniter-version-tester/?branch=master)
+
+[![Build Status](https://scrutinizer-ci.com/g/Calico90/codeigniter-version-tester/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Calico90/codeigniter-version-tester/build-status/master)
 
 coverage
 ---

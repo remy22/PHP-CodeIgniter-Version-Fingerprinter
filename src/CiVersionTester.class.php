@@ -14,6 +14,9 @@ class CiVersionTests
         $this->versions_left = $this->all_versions;
     }
     
+    /**
+     * @param string $url
+     */
     private function getHttpResponseCode($url)
     {
         $curl = curl_init();
@@ -25,6 +28,9 @@ class CiVersionTests
         return intval($httpStatusCode);
     }
     
+    /**
+     * @param string $search
+     */
     private function highlightKeyword($str, $search)
     {
         $occurrences = substr_count(strtolower($str), strtolower($search));
@@ -42,6 +48,10 @@ class CiVersionTests
         return $newstring;
     }
     
+    /**
+     * @param string $function
+     * @param string $testedVersion
+     */
     public function test($function, $testedVersion)
     {
         echo $this->highlightKeyword(print_r($this->$function(), true), '=> ' . $testedVersion . "\n");

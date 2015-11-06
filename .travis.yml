@@ -7,22 +7,15 @@ php:
     - hhvm
 language: php
 before_install:
-  - pip install --user codecov
+    - composer self-update
+    - pip install --user codecov
 before_script:
-  - wget https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+    - wget https://scrutinizer-ci.com/ocular.phar
+    - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
 script:
     - phpunit --coverage-clover=coverage.xml
     - phpunit --coverage-clover=coverage.clover
+after_script:
+    - vendor/bin/test-reporter
 after_success:
     - codecov --token=525c3a38-f2c4-4b56-9f98-435db3190079
-#  - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
-
-
-
-
-#after_script:
-#  - vendor/bin/test-reporter
-  
-
-   

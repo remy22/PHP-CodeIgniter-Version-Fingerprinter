@@ -198,7 +198,7 @@ class CiVersionTests
 		file_get_contents($url, true);
         $possibleV  = $this->all_versions;
 		// als system/init/init_unit_test.php bestaat is het versie 1.3.1 of hoger
-		if ($http_response_header[0] === 'HTTP/1.1 404 Not Found') {
+        if ($this->getHttpResponseCode($url) === 404) {
 			//echo 'CodeIgniter version 1.3 or version 1.5.1 or higher<br>';
 			$akey         = array_search('1.3.1', $possibleV);
 			$return     = array_splice($possibleV, $akey);

@@ -46,10 +46,6 @@ class CiVersionTests
     
     public function test($function, $testedVersion)
     {
-        /*echo '<tr><td style="width:150px">', $function,
-             '</td><td><pre>',
-             $this->highlightKeyword(print_r($this->$function(), true), '=> ' . $testedVersion . "\n"),
-             '</pre></tr></tr>';*/
         echo $this->highlightKeyword(print_r($this->$function(), true), '=> ' . $testedVersion . "\n");
     }
     

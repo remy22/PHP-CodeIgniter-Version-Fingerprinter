@@ -3,10 +3,10 @@ require __DIR__ . '/../src/CiVersionTester.class.php';
 
 class CiVersionTesterTest extends PHPUnit_Framework_TestCase
 {
-    public function testEmpty()
-    {
-        $this->assertFalse(new CiVersionTester\CiVersionTests()); 
-    }
+    //public function testEmpty()
+    //{
+    //    $this->assertFalse(new CiVersionTester\CiVersionTests()); 
+    //}
     
     public function testCi()
     {

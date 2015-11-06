@@ -1,4 +1,4 @@
-# codeigniter-version-test
+# codeigniter-version-tester
 CodeIgniter version tester
 
 travis-ci

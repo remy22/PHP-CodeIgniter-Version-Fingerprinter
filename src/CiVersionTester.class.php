@@ -3,8 +3,8 @@
 class CiVersionTests
 {
     public $url;
-    public $all_versions;
-    public $versions_left;
+    private $all_versions;
+    private $versions_left;
     
     public function __construct()
     {
@@ -60,7 +60,7 @@ class CiVersionTests
         echo $this->highlightKeyword(print_r($this->$function(), true), '=> ' . $testedVersion . "\n");
     }
     
-    public function userGuideVersion()
+    private function userGuideVersion()
     {
         $return = false;
         $url = $this->url . 'user_guide/';
@@ -108,7 +108,7 @@ class CiVersionTests
         return $return;
     }
     
-    public function applicationFolder()
+    private function applicationFolder()
     {
         $url = $this->url . 'application/';
         $possibleV = $this->all_versions;
@@ -129,7 +129,7 @@ class CiVersionTests
         return $return;
     }
 
-    public function librariesCalendar()
+    private function librariesCalendar()
     {
         $url = $this->url . 'system/libraries/Calendar.php';
         if ($this->getHttpResponseCode($url) === 404) {
@@ -139,7 +139,7 @@ class CiVersionTests
         return false;
     }
     
-    public function controllersIndexHtml()
+    private function controllersIndexHtml()
     {
         $return = false;
         $url = $this->url . 'system/application/controllers/index.html';
@@ -155,7 +155,7 @@ class CiVersionTests
         return $return;
     }
     
-    public function modelsIndexHtml()
+    private function modelsIndexHtml()
     {
         $return = false;
         $url = $this->url . 'system/application/models/index.html';
@@ -170,7 +170,7 @@ class CiVersionTests
         return $return;
     }
 
-    public function licenseTxt()
+    private function licenseTxt()
     {
         $return = false;
         $url = $this->url . 'license.txt';
@@ -202,7 +202,7 @@ class CiVersionTests
         return $return;
     }
     
-    public function systemInitUnitTest()
+    private function systemInitUnitTest()
     {
         $return = 0;
         $url = $this->url . 'system/init/init_unit_test.php';

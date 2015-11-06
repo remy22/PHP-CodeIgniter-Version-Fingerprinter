@@ -1,11 +1,4 @@
-language: php
-script: 
-  - vendor/bin/phpunit --coverage-clover=coverage.xml
-
-
+before_install:
+  - pip install --user codecov
 after_success:
-    - bash <(curl -s https://codecov.io/bash)
-    
-addons:
-    code_climate:
-        repo_token: 6cef356f8bc0802a667d2d49cb8498a3da90eedf9f24d61b7f6984fb60195f18
+  - codecov

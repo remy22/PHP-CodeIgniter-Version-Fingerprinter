@@ -1,4 +1,4 @@
-<?php
+<?php namespace CiVersionTester;
 
 //require __DIR__ . '/../src/autoload.php';
 require __DIR__ . '/../src/CiVersionTester.class.php';

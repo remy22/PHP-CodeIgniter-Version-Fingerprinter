@@ -9,7 +9,7 @@ class CiVersionTests
     /**
      * @param string $url
      */
-    public function __construct($url)
+    public function __construct($url = null)
     {
         if (empty($url)) {
             return FALSE;

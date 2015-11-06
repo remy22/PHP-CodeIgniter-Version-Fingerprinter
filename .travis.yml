@@ -15,6 +15,7 @@ php:
 #    - hhvm-nightly #HHVM nightly is no longer supported on Ubuntu Precise. https://github.com/travis-ci/travis-ci/issues/3788
 language: php
 before_install:
+    - composer require codeclimate/php-test-reporter --dev
     - composer self-update
     - pip install --user codecov
 before_script:

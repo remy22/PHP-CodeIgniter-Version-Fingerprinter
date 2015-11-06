@@ -72,4 +72,17 @@ class CiVersionTesterTest extends PHPUnit_Framework_TestCase
         $ciVersionTests->test('licenseTxt', $version);
         $ciVersionTests->test('systemInitUnitTest', $version);
     }
+    
+    public function testAudk()
+    {
+        $version = '1.5.1';
+        $ciVersionTests = new CiVersionTester\CiVersionTests('http://cs.au.dk/~grav/hypweb/codeigniter/');
+        $ciVersionTests->test('controllersIndexHtml', $version);
+        $ciVersionTests->test('userGuideVersion', $version);
+        $ciVersionTests->test('applicationFolder', $version);
+        $ciVersionTests->test('librariesCalendar', $version);
+        $ciVersionTests->test('modelsIndexHtml', $version);
+        $ciVersionTests->test('licenseTxt', $version);
+        $ciVersionTests->test('systemInitUnitTest', $version);
+    }
 }

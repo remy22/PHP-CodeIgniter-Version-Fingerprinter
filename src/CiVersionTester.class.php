@@ -44,8 +44,7 @@ class CiVersionTests
      */
     private function getHttpResponseCode($url)
     {
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
+        $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_exec($curl);
         $httpStatusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
@@ -53,6 +52,20 @@ class CiVersionTests
         return intval($httpStatusCode);
     }
     
+    /**
+     * @param string $url
+     */
+    private function getHttpContents($url)
+    {
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 0);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+        $data = curl_exec($curl);
+        curl_close($curl);
+        return $data;
+    }
     /**
      * @param string $search
      */
@@ -81,7 +94,7 @@ class CiVersionTests
             return $return;
         }
 
-        $response = file_get_contents($url, true);
+        $response = getHttpContents($url);
         # check version < 3.0rc
         preg_match('/h1(.*)</', $response, $matched);
         if (substr($matched[1], 0, 11) === '>Code Ignit' || substr($matched[1], 0, 11) === '>CodeIgnite') {
@@ -194,9 +207,8 @@ class CiVersionTests
         }
         
         $possibleV = $this->all_versions;
-        $response = file_get_contents($url, true);
+        $response = getHttpContents($url);
 
-        file_get_contents($url, true);
         preg_match('/EllisLab/', $response, $ematch);
         if ($ematch) {
             $akey = array_search('1.5.3', $possibleV);

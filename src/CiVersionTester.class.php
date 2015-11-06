@@ -16,15 +16,13 @@ class CiVersionTests
     
     private function getHttpResponseCode($url)
     {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_exec($ch);
-        $http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
-        return intval($http_status_code);
-        //$headers = get_headers($url);
-        //return intval(substr($headers[0], 9, 3));
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        //curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_exec($curl);
+        $httpStatusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        curl_close($curl);
+        return intval($httpStatusCode);
     }
     
     private function highlightKeyword($str, $search)

@@ -46,10 +46,11 @@ class CiVersionTests
     
     public function test($function, $testedVersion)
     {
-        echo '<tr><td style="width:150px">', $function,
+        /*echo '<tr><td style="width:150px">', $function,
              '</td><td><pre>',
              $this->highlightKeyword(print_r($this->$function(), true), '=> ' . $testedVersion . "\n"),
-             '</pre></tr></tr>';
+             '</pre></tr></tr>';*/
+        echo $this->highlightKeyword(print_r($this->$function(), true), '=> ' . $testedVersion . "\n");
     }
     
     public function userGuideVersion()
@@ -201,7 +202,7 @@ class CiVersionTests
         $return     = 0;
         $url        = $this->url . 'system/init/init_unit_test.php';
         
-        file_get_contents($url, true);
+        //file_get_contents($url, true);
         $possibleV  = $this->all_versions;
         // als system/init/init_unit_test.php bestaat is het versie 1.3.1 of hoger
         if ($this->getHttpResponseCode($url) === 404) {

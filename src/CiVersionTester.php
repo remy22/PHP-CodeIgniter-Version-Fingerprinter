@@ -203,7 +203,7 @@ class CiVersionTests
         return $return;
     }
     
-    /*public function system_init_unit_test()
+    public function system_init_unit_test()
     {
         //$return   = $this->versions_left;
         $return     = 0;
@@ -221,5 +221,5 @@ class CiVersionTests
                 $this->versions_left = $return;
             }
         return $return;
-    }*/
+    }
 }

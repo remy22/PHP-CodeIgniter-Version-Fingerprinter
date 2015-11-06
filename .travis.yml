@@ -17,7 +17,7 @@ before_script:
 script: phpunit -h
 
 before_install:
-  - pip install codecov
+  - pip install --user codecov
 after_success:
   - codecov
 #script: phpunit --coverage-clover=coverage.clover

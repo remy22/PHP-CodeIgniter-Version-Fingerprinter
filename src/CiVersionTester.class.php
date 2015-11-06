@@ -79,18 +79,18 @@ class CiVersionTests
         preg_match('/h1(.*)</', $response, $matched);
         if (substr($matched[1], 0, 11) === '>Code Ignit' || substr($matched[1], 0, 11) === '>CodeIgnite') {
             # version found in user_guide
-            $version = trim(strip_tags(str_replace(array('>Code Igniter User Guide Version',
+            $return = trim(strip_tags(str_replace(array('>Code Igniter User Guide Version',
                                                             '>CodeIgniter User Guide Version'), '', $matched[1])));
-            $return = $version;
-            if ($version == '1.0') {
-                $return = '1.0b';
-            }
-            
-            if ($version == 'Beta 1.1') {
-                $return = '1.1b';
-            }
         }
-        
+
+        if ($version === '1.0') {
+            $return = '1.0b';
+        }
+
+        if ($version === 'Beta 1.1') {
+            $return = '1.1b';
+        }
+
         # check version == 3.0rc
         preg_match('/Jan 26, 2015/', $response, $match);
         if (count($match) > 0) {

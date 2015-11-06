@@ -5,7 +5,7 @@ class CiVersionTests
     
     public function __construct()
     {
-        $this->url          = 'https://www.codeigniter.com';
+        $this->url          = 'https://www.codeigniter.com  ';
         $this->all_versions = array('1.0b', '1.1b', '1.2', '1.3', '1.3.1', '1.3.2', '1.3.3', '1.4.1',
                                     '1.5.1', '1.5.2', '1.5.3', '1.5.4', '1.6.0', '1.6.1', '1.6.2', '1.6.3',
                                     '1.7.0', '1.7.1', '1.7.2', '1.7.3', '2.0.0', '2.0.1', '2.0.2', '2.0.3',
@@ -16,8 +16,15 @@ class CiVersionTests
     
     private function getHttpResponseCode($url)
     {
-        $headers = get_headers($url);
-        return intval(substr($headers[0], 9, 3));
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_exec($ch);
+        $http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+        return intval($http_status_code);
+        //$headers = get_headers($url);
+        //return intval(substr($headers[0], 9, 3));
     }
     
     private function highlightKeyword($str, $search)

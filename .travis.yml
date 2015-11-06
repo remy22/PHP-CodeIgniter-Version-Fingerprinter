@@ -4,4 +4,5 @@ before_install:
 script:
     - phpunit --coverage-clover=coverage.xml
 after_success:
-  - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"  
+    - codecov --token=525c3a38-f2c4-4b56-9f98-435db3190079
+#  - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"

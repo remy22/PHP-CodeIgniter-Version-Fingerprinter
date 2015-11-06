@@ -3,7 +3,7 @@ require __DIR__ . '/../src/CiVersionTester.class.php';
 
 class CiVersionTesterTest extends PHPUnit_Framework_TestCase
 {
-    public function test()
+    public function testHairstreet()
     {
         $version = '1';
         $ciVersionTests = new CiVersionTester\CiVersionTests('http://www.hairstreet.com/'); #2.2.0
@@ -14,8 +14,10 @@ class CiVersionTesterTest extends PHPUnit_Framework_TestCase
         $ciVersionTests->test('modelsIndexHtml', $version);
         $ciVersionTests->test('licenseTxt', $version);
         $ciVersionTests->test('systemInitUnitTest', $version);
+    }
     
-
+    public function testVesta()
+    {
         $ciVersionTests = new CiVersionTester\CiVersionTests('https://www.vestavuurwerk.nl'); #2.1.4
         $ciVersionTests->test('controllersIndexHtml', $version);
         $ciVersionTests->test('userGuideVersion', $version);
@@ -24,7 +26,10 @@ class CiVersionTesterTest extends PHPUnit_Framework_TestCase
         $ciVersionTests->test('modelsIndexHtml', $version);
         $ciVersionTests->test('licenseTxt', $version);
         $ciVersionTests->test('systemInitUnitTest', $version); 
-
+    }
+    
+    public function testGraviton()
+    {
         $ciVersionTests = new CiVersionTester\CiVersionTests('http://gravitonbouldergym.nl/gdb/'); #1.7.2
         $ciVersionTests->test('controllersIndexHtml', $version);
         $ciVersionTests->test('userGuideVersion', $version);
@@ -33,7 +38,10 @@ class CiVersionTesterTest extends PHPUnit_Framework_TestCase
         $ciVersionTests->test('modelsIndexHtml', $version);
         $ciVersionTests->test('licenseTxt', $version);
         $ciVersionTests->test('systemInitUnitTest', $version);
-        
+    }
+    
+    public function testFnq()
+    {
         $ciVersionTests = new CiVersionTester\CiVersionTests('https://www.fnqapartments.com/res/'); #1.5.3
         $ciVersionTests->test('controllersIndexHtml', $version);
         $ciVersionTests->test('userGuideVersion', $version);
@@ -42,6 +50,5 @@ class CiVersionTesterTest extends PHPUnit_Framework_TestCase
         $ciVersionTests->test('modelsIndexHtml', $version);
         $ciVersionTests->test('licenseTxt', $version);
         $ciVersionTests->test('systemInitUnitTest', $version);
-                
     }
 }

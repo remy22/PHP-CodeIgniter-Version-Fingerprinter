@@ -34,3 +34,5 @@ coverage
 <a href="https://codecov.io/github/Calico90/codeigniter-version-tester?branch=master">
   <img src="https://codecov.io/github/Calico90/codeigniter-version-tester/coverage.svg?branch=master" alt="Coverage via Codecov" />
 </a>
+
+![codecov.io](https://codecov.io/github/Calico90/codeigniter-version-tester/branch.svg?branch=master)

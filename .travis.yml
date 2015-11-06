@@ -17,6 +17,9 @@ addons:
     code_climate:
         repo_token: 6cef356f8bc0802a667d2d49cb8498a3da90eedf9f24d61b7f6984fb60195f18
 
+before_install:
+    - composer self-update
+    
 install:
     pip install codecov
 after_success:

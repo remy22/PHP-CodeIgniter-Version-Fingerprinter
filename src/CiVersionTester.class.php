@@ -18,7 +18,7 @@ class CiVersionTests
     {
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
-        //curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_exec($curl);
         $httpStatusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         curl_close($curl);

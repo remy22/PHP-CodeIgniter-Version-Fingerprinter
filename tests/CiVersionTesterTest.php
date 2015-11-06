@@ -8,7 +8,7 @@ class CiVersionTesterTest extends PHPUnit_Framework_TestCase
         $this->assertFalse(new CiVersionTester\CiVersionTests()); 
     }
     
-    public function testFnq()
+    public function testCi()
     {
         $version = '3.0.3';
         $ciVersionTests = new CiVersionTester\CiVersionTests('http://www.codeigniter.com/');

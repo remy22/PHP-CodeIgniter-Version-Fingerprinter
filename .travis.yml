@@ -1,23 +1,23 @@
 language: php
 
 php:
+    - 5.2
     - 5.3
     - 5.4
     - 5.5
     - 5.6
+    - hhvm
 
 before_script:
     - travis_retry composer self-update
     - travis_retry composer install --no-interaction --prefer-source
 
-sudo: required
+script:
+    - vendor/bin/phpunit --coverage-clover=coverage.xml
 
+after_success:
+    - bash <(curl -s https://codecov.io/bash)
+    
 addons:
     code_climate:
         repo_token: 6cef356f8bc0802a667d2d49cb8498a3da90eedf9f24d61b7f6984fb60195f18
-
-before_install:
-    - composer self-update
-    
-after_success:
-  - bash <(curl -s https://codecov.io/bash)

@@ -17,3 +17,13 @@ tools:
         enabled: true
     php_cpd:
         enabled: true
+        
+        
+build:
+    tests:
+        override:
+            -
+                command: 'phpunit --coverage-clover=some-file'
+                coverage:
+                    file: 'some-file'
+                    format: 'php-clover'

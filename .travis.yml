@@ -1,5 +1,7 @@
 language: php
 before_install:
   - pip install --user codecov
+script:
+    - vendor/bin/phpunit --coverage-clover=coverage.xml
 after_success:
-  - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
+  - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"  

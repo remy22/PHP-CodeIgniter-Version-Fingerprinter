@@ -110,7 +110,6 @@ class CiVersionTests
     
     public function applicationFolder()
     {
-        $return = false;
         $url = $this->url . 'application/';
         $possibleV = $this->all_versions;
 

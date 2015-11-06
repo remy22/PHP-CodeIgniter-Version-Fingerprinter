@@ -20,7 +20,5 @@ addons:
 before_install:
     - composer self-update
     
-install:
-    pip install codecov
 after_success:
-    codecov
+  - bash <(curl -s https://codecov.io/bash)

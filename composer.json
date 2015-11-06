@@ -15,5 +15,10 @@
         "php": ">=5.0.0",
         "phpunit/phpunit": "~4.0",
         "codeclimate/php-test-reporter": "dev-master"
+    }, 
+    "require-dev": {
+        "php": ">=5.0.0",
+        "phpunit/phpunit": "~4.0",
+        "codeclimate/php-test-reporter": "dev-master"
     }
 }

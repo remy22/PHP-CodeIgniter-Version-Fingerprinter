@@ -26,8 +26,7 @@ class CiVersionTests
         $newstring = $str;
         $match = array();
         
-        for ($i=0; $i<$occurrences; ++$i) 
-        {
+        for ($i=0; $i<$occurrences; ++$i) {
             $match[$i] = stripos($str, $search, $i);
             $match[$i] = substr($str, $match[$i], strlen($search));
             $newstring = str_replace($match[$i], '[#]' . $match[$i] . '[@]', strip_tags($newstring));
@@ -195,15 +194,15 @@ class CiVersionTests
         $return     = 0;
         $url        = $this->url . 'system/init/init_unit_test.php';
         
-		file_get_contents($url, true);
+        file_get_contents($url, true);
         $possibleV  = $this->all_versions;
-		// als system/init/init_unit_test.php bestaat is het versie 1.3.1 of hoger
+        // als system/init/init_unit_test.php bestaat is het versie 1.3.1 of hoger
         if ($this->getHttpResponseCode($url) === 404) {
-			//echo 'CodeIgniter version 1.3 or version 1.5.1 or higher<br>';
-			$akey         = array_search('1.3.1', $possibleV);
-			$return     = array_splice($possibleV, $akey);
-			$this->versions_left = $return;
-		}
-		return $return;
+            //echo 'CodeIgniter version 1.3 or version 1.5.1 or higher<br>';
+            $akey         = array_search('1.3.1', $possibleV);
+            $return     = array_splice($possibleV, $akey);
+            $this->versions_left = $return;
+        }
+        return $return;
     }
 }

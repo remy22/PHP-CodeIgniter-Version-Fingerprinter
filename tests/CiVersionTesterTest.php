@@ -1,7 +1,6 @@
-<?php
-require __DIR__ . '/../src/CiVersionTester.class.php';
+<?php namespace CiVersionTester;
 
-class CiVersionTesterTest extends PHPUnit_Framework_TestCase
+class CiVersionTesterTest extends \PHPUnit_Framework_TestCase
 {
     public function testEmpty()
     {

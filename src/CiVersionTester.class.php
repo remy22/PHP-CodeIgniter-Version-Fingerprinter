@@ -95,7 +95,7 @@ class CiVersionTests
         }
 
         $response = $this->getHttpContents($url);
-        # check version < 3.0rc
+        # check version lower then CI 3.0rc
         preg_match('/h1(.*)</', $response, $matched);
         if (substr($matched[1], 0, 11) === '>Code Ignit' || substr($matched[1], 0, 11) === '>CodeIgnite') {
             # version found in user_guide

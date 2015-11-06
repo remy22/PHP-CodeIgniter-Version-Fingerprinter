@@ -6,7 +6,7 @@ $opendir = opendir('codeigniter-version-detect');
 
 $versions = array();
 while ($dirname = readdir($opendir)) {
-    if ($dirname != '.' AND $dirname != '..') {
+    if ($dirname != '.' && $dirname != '..') {
         if (substr($dirname, 0, 11) == 'CodeIgniter') {
             $versions[] = $dirname;
         }

@@ -1,7 +1,7 @@
 # codeigniter-version-tester
 CodeIgniter version tester
 
-This is the renewed version of https://github.com/Calico90/codeigniter-version-scan.
+This is the newer version detection script. The old version can be found here https://github.com/Calico90/codeigniter-version-scan.
 
 travis-ci
 ---

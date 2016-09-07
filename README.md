@@ -1,6 +1,8 @@
 # codeigniter-version-tester
 CodeIgniter version tester
 
+This is the renewed version of https://github.com/Calico90/codeigniter-version-scan.
+
 travis-ci
 ---
 
